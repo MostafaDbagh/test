@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { get } from '../../api/axiosConfig';
+import React from 'react';
+import useFetchProducts from '../../hooks/useFetchProduct';
 import { Container, Heading, Grid, Card, Image, Title, Price, Loader, ErrorMessage } from './style'; 
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);      
+  const { products, loading, error } = useFetchProducts('/products'); 
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await get('/products');
-        setProducts(data); 
-      } catch (error) {
-        setError('Something went wrong! Please try again later.'); 
-        console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false);  
-      }
-    };
-    fetchProducts();
-  }, []);
   if (loading) {
-    return <Loader/>  
+    return <Loader />;  
   }
+
   return (
     <Container>
       <Heading>Product List</Heading>
       {error ? (
-        <ErrorMessage>{error}</ErrorMessage>  // Show error message if fetch failed
+        <ErrorMessage>{error}</ErrorMessage>  
       ) : (
         <Grid>
           {products.map((product) => (
