@@ -19,14 +19,11 @@ const ProductList = () => {
         setLoading(false);  
       }
     };
-
     fetchProducts();
   }, []);
-
   if (loading) {
     return <Loader/>  
   }
-
   return (
     <Container>
       <Heading>Product List</Heading>
