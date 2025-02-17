@@ -1,7 +1,7 @@
-# Bambo test
+# Bamboo test
 
 
-<h1 align="center" id="title">Baboo Project</h1>
+<h1 align="center" id="title">Bamboo Project</h1>
 
 <p id="description">fetch product and show it as product list</p>
 
